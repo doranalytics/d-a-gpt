@@ -31,7 +31,7 @@ export const Footer: FC = () => {
       <div className="flex space-x-4">
         <a
           className="flex items-center hover:opacity-50"
-          href="https://twitter.com/mckaywrigley"
+          href="https://twitter.com/doranalytics"
           target="_blank"
           rel="noreferrer"
         >
