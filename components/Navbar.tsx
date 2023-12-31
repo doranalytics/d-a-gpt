@@ -7,9 +7,9 @@ export const Navbar: FC = () => {
       <div className="font-bold text-2xl flex items-center">
         <a
           className="hover:opacity-50"
-          href="https://paul-graham-gpt.vercel.app"
+          href="https://doranalytics-gpt.vercel.app"
         >
-          d^a gpt
+          doranalytics gpt
         </a>
       </div>
       <div>
@@ -19,7 +19,7 @@ export const Navbar: FC = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <div className="hidden sm:flex">d^a SubStack</div>
+          <div className="hidden sm:flex">doranalytics substack</div>
 
           <IconExternalLink
             className="ml-1"

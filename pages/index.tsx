@@ -199,10 +199,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Paul Graham GPT</title>
+        <title>doranalytics gpt</title>
         <meta
           name="description"
-          content={`AI-powered search and chat for Paul Graham's essays.`}
+          content={`ai powered search and chat for doranalytics essays`}
         />
         <meta
           name="viewport"
@@ -210,7 +210,7 @@ export default function Home() {
         />
         <link
           rel="icon"
-          href="/favicon.ico"
+          href="/da.png"
         />
       </Head>
 
@@ -294,18 +294,19 @@ export default function Home() {
                   ref={inputRef}
                   className="h-12 w-full rounded-full border border-zinc-600 pr-12 pl-11 focus:border-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-800 sm:h-16 sm:py-2 sm:pr-16 sm:pl-16 sm:text-lg"
                   type="text"
-                  placeholder="How do I start a startup?"
+                  placeholder="Explain horizontal hierarchies"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
                 />
 
-                <button>
+                <button> 
                   <IconArrowRight
                     onClick={mode === "search" ? handleSearch : handleAnswer}
-                    className="absolute right-2 top-2.5 h-7 w-7 rounded-full bg-blue-500 p-1 hover:cursor-pointer hover:bg-blue-600 sm:right-3 sm:top-3 sm:h-10 sm:w-10 text-white"
+                    className="absolute right-2 top-2.5 h-7 w-7 rounded-full bg-stone-600 p-1 hover:cursor-pointer hover:bg-lime-700 sm:right-3 sm:top-3 sm:h-10 sm:w-10 text-white"
                   />
                 </button>
+
               </div>
             ) : (
               <div className="text-center font-bold text-3xl mt-7">
@@ -401,7 +402,19 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="mt-6 text-center text-lg">{`AI-powered search & chat for Paul Graham's essays.`}</div>
+              <div className="mt-6 text-center text-lg">
+              {`ai powered search & chat for doranalytics essays`}
+            
+              <video 
+                src="/vinecraft.mp4"
+                style={{ width: '750px', height: '300px', marginTop: '20px'}}
+                loop
+                autoPlay
+                muted
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
             )}
           </div>
         </div>
