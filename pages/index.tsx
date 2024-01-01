@@ -18,15 +18,9 @@ export default function Home() {
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [mode, setMode] = useState<"search" | "chat">("chat");
   const [matchCount, setMatchCount] = useState<number>(5);
-  const [apiKey, setApiKey] = useState<string>("");
 
   const handleSearch = async () => {
-    if (!apiKey) {
-      alert("Please enter an API key.");
-      return;
-    }
-
-    if (!query) {
+      if (!query) {
       alert("Please enter a query.");
       return;
     }
@@ -41,7 +35,7 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ query, apiKey, matches: matchCount })
+      body: JSON.stringify({ query, matches: matchCount })
     });
 
     if (!searchResponse.ok) {
@@ -61,12 +55,7 @@ export default function Home() {
   };
 
   const handleAnswer = async () => {
-    if (!apiKey) {
-      alert("Please enter an API key.");
-      return;
-    }
-
-    if (!query) {
+     if (!query) {
       alert("Please enter a query.");
       return;
     }
@@ -81,7 +70,7 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ query, apiKey, matches: matchCount })
+      body: JSON.stringify({ query, matches: matchCount })
     });
 
     if (!searchResponse.ok) {
@@ -104,7 +93,7 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ prompt, apiKey })
+      body: JSON.stringify({ prompt })
     });
 
     if (!answerResponse.ok) {
@@ -145,12 +134,7 @@ export default function Home() {
   };
 
   const handleSave = () => {
-    if (apiKey.length !== 51) {
-      alert("Please enter a valid API key.");
-      return;
-    }
-
-    localStorage.setItem("PG_KEY", apiKey);
+  
     localStorage.setItem("PG_MATCH_COUNT", matchCount.toString());
     localStorage.setItem("PG_MODE", mode);
 
@@ -159,11 +143,9 @@ export default function Home() {
   };
 
   const handleClear = () => {
-    localStorage.removeItem("PG_KEY");
     localStorage.removeItem("PG_MATCH_COUNT");
     localStorage.removeItem("PG_MODE");
 
-    setApiKey("");
     setMatchCount(5);
     setMode("search");
   };
@@ -181,10 +163,7 @@ export default function Home() {
     const PG_MATCH_COUNT = localStorage.getItem("PG_MATCH_COUNT");
     const PG_MODE = localStorage.getItem("PG_MODE");
 
-    if (PG_KEY) {
-      setApiKey(PG_KEY);
-    }
-
+  
     if (PG_MATCH_COUNT) {
       setMatchCount(parseInt(PG_MATCH_COUNT));
     }
@@ -251,23 +230,7 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="mt-2">
-                  <div>OpenAI API Key</div>
-                  <input
-                    type="password"
-                    placeholder="OpenAI API Key"
-                    className="max-w-[400px] block w-full rounded-md border border-gray-300 p-2 text-black shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-                    value={apiKey}
-                    onChange={(e) => {
-                      setApiKey(e.target.value);
-
-                      if (e.target.value.length !== 51) {
-                        setShowSettings(true);
-                      }
-                    }}
-                  />
-                </div>
-
+                
                 <div className="mt-4 flex space-x-2 justify-center">
                   <div
                     className="flex cursor-pointer items-center space-x-2 rounded-full bg-green-500 px-3 py-1 text-sm text-white hover:bg-green-600"
@@ -286,7 +249,7 @@ export default function Home() {
               </div>
             )}
 
-            {apiKey.length === 51 ? (
+          
               <div className="relative w-full mt-4">
                 <IconSearch className="absolute top-3 w-10 left-1 h-6 rounded-full opacity-50 sm:left-3 sm:top-4 sm:h-8" />
 
@@ -308,18 +271,7 @@ export default function Home() {
                 </button>
 
               </div>
-            ) : (
-              <div className="text-center font-bold text-3xl mt-7">
-                Please enter your
-                <a
-                  className="mx-2 underline hover:opacity-50"
-                  href="https://platform.openai.com/account/api-keys"
-                >
-                  OpenAI API key
-                </a>
-                in settings.
-              </div>
-            )}
+            
 
             {loading ? (
               <div className="mt-6 w-full">

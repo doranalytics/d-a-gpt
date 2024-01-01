@@ -6,11 +6,16 @@ export const config = {
 
 const handler = async (req: Request): Promise<Response> => {
   try {
-    const { prompt, apiKey } = (await req.json()) as {
+    const { prompt } = (await req.json()) as {
       prompt: string;
-      apiKey: string;
     };
 
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      console.error("API key is not set in the environment variables");
+      return new Response("Internal Server Error", { status: 500 });
+    }
+    
     const stream = await OpenAIStream(prompt, apiKey);
 
     return new Response(stream);

@@ -4,9 +4,16 @@ import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser
 
 export const supabaseAdmin = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 
-export const OpenAIStream = async (prompt: string, apiKey: string) => {
+export const OpenAIStream = async (prompt: string) => {
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
+  
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error("API key is not set in the environment variables");
+  }
+
+
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
