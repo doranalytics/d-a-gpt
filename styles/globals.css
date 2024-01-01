@@ -5,3 +5,17 @@
 body {
     background-color: #eaf1e8;
 }
+
+.custom-button {
+    background-color: #f0f0f0; /* Example background color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    /* Add more styles as needed */
+}
+
+.custom-button:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+    /* Other hover styles */
+}

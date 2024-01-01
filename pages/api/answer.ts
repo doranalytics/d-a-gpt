@@ -15,8 +15,8 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("API key is not set in the environment variables");
       return new Response("Internal Server Error", { status: 500 });
     }
-    
-    const stream = await OpenAIStream(prompt, apiKey);
+
+    const stream = await OpenAIStream(prompt);
 
     return new Response(stream);
   } catch (error) {
